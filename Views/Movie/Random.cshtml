@@ -1,0 +1,33 @@
+﻿@model Vidly.ViewModels.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    this is a sample of comment
+    The text is not a html element but razor uses it to display the content between them 
+    without any html tag otherwise razor cannot differentiate between c# and html content
+    className is a variable which is declared in the view for creating dynamic data.
+    It is important to note that most of the business logic should be in constructor 
+    and no major logic should be written in the view 
+*@
+
+@{ 
+    var className = Model.customers.Count > 0 ? "popular" : null;
+}
+<h2 class="@className">Movie Name @Model.movie.Name</h2>
+@if(Model.customers.Count == 0)
+{
+   <text> No customer has rented this movie yet</text>
+}
+else
+{
+   <ul>
+     @foreach(var customer in Model.customers)
+       {
+          <li>@customer.Name</li>
+       }
+   </ul>
+}
